@@ -1,0 +1,11 @@
+#!/data/data/com.termux/files/usr/bin/sh
+G=/data/data/com.termux/files/usr/var/lib/proot-distro/containers/ubuntu/rootfs/usr/lib
+S=/data/data/com.termux/files/home/.local/lib/agy-glibc
+unset LD_PRELOAD
+unset LD_LIBRARY_PATH
+export GODEBUG=netdns=go
+export SSL_CERT_FILE=/data/data/com.termux/files/usr/etc/tls/cert.pem
+exec /data/data/com.termux/files/usr/bin/proot \
+  -b /data/data/com.termux/files/usr/etc/resolv.conf:/etc/resolv.conf \
+  "$G/ld-linux-aarch64.so.1" --library-path ":/data/data/com.termux/files/usr/var/lib/proot-distro/containers/ubuntu/rootfs/usr/lib:/data/data/com.termux/files/usr/var/lib/proot-distro/containers/ubuntu/rootfs/usr/lib/aarch64-linux-gnu" \
+  /data/data/com.termux/files/home/.local/bin/agy.va39 "$@"
